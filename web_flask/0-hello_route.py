@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
 from flask import Flask
 
 
