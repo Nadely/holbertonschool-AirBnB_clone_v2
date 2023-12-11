@@ -5,49 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="AirBnB clone">
     <title>AirBnB clone</title>
-    <link rel="icon" type="images/png" href="{{ url_for('static', filename='images/icon.jpg') }}">
-    <link rel='stylesheet' href="{{ url_for('static', filename='styles/3-header.css') }}">
-    <link rel='stylesheet' href="{{ url_for('static', filename='styles/3-footer.css') }}">
-    <link rel='stylesheet' href="{{ url_for('static', filename='styles/4-common.css') }}">
-    <link rel='stylesheet' href="{{ url_for('static', filename='styles/6-filters.css') }}">
+    <link rel="icon" type="images/png" href="/static/images/icon.jpg">
+    <link rel='stylesheet' href="/static/style/3-footer.css">
+    <link rel='stylesheet' href="/static/style/3-header.css">
+    <link rel='stylesheet' href="/static/style/4-common.css">
+    <link rel='stylesheet' href="/static/style/6-filters.css">
 </head>
 
 <body>
-    <header></header>
+	<header>
+		<div id="header_logo"></div>
+	</header>
+	<div class="container">
+		<section class="filters">
+			<button>Search</button>
+			<div class="locations">
+				<h3>States</h3>
+				<h4>California, Arizona...</h4>
+				<ul class="popover">
+					{% for state in states | sort(attribute="name") %}
+						<li>
+							<h2>{{ state.name }}</h2>
+							<ul>
+								{% for city in state.cities | sort(attribute="name") %}
+									<li>{{ city.name }}</li>
+								{% endfor %}
+							</ul>
+						</li>
+					{% endfor %}
 
-    <div class="container">
-        <section class="filters">
-            <button> Search </button>
-            <div class="locations">
-                <h3>States</h3>
-                <h4>&nbsp;</h4>
-                <ul class="popover">
-                    {% for state in states | sort(attribute="name") %}
-                        <li>
-                            <h2>{{ state.name }}</h2>
-                            <ul>
-                                {% for city in state.cities | sort(attribute="name") %}
-                                    <li>{{ city.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="amenities">
-                <h3>Amenities</h3>
-                <h4>&nbsp;</h4>
-                <ul class="popover">
-                    {% for amenity in amenities | sort(attribute="name") %}
-                        <li>{{ amenity.name }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </section>
-    </div>
+				</ul>
+			</div>
+			<div class="amenities">
+				<h3>Amenities</h3>
+				<h4>Internet, Kitchen...</h4>
+				<ul class="popover">
+					{% for amenity in amenities | sort(attribute="name") %}
+						<li>{{ amenity.name }}</li>
+					{% endfor %}
+				</ul>
 
-    <footer>
-        Holberton School
-    </footer>
+			</div>
+
+		</section>
+	</div>
+	<footer>
+		<p>Holberton School</p>
+	</footer>
 </body>
 </html>
