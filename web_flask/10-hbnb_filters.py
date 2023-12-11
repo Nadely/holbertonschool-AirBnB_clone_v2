@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from flask import Flask, render_template
-from models import storage, State, City
+from models import storage, State, City, Amenity
 
 
 app = Flask(__name__)
@@ -9,9 +9,8 @@ app = Flask(__name__)
 def teardown(exception):
     storage.close()
 
-@app.route("/states", strict_slashes=False)
-@app.route("/states/<id>", strict_slashes=False)
-def states(id=None):
+@app.route("/hbnb_filters", strict_slashes=False)
+def hbnb_filters(id=None):
     states = storage.all(State)
     cities = None
 
@@ -19,8 +18,10 @@ def states(id=None):
         key = "State." + id
         states = {key: storage.all(State).get(key)}
         cities = storage.all(City)
+        amenities = storage.all(Amenity)
 
-    return render_template('9-states.html', states=states, cities=cities)
+    return render_template('10-hbnb_filters.html', states=states,
+                           cities=cities, amenities=amenities)
 
 
 if __name__ == '__main__':
