@@ -6,10 +6,10 @@
     <body>
         <h1>States</h1>
         <ul>
-            {% for state_id, state in states.items() | sort(attribute="name") %}
+            {% for state_id, state in states.items() | sort(attribute='name') %}
             <li>{{ state_id.split(".")[1] }} <b>{{ state.name }}</b></li>
                 <ul>
-                    {% for city in cities.values() | sort(attribute="name") %}
+                    {% for city in cities.values() | sort(attribute='name') %}
                     {% if city.state_id == state.id %}
                     <li>{{ city.id }} <b>{{ city.name }}</b></li>
                     {% endif %}

@@ -10,12 +10,16 @@ from models.amenity import Amenity
 
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def teardown(exception):
+    """remove the current SQLAlchemy Session"""
     storage.close()
+
 
 @app.route("/hbnb_filters", strict_slashes=False)
 def hbnb_filters(id=None):
+    """return cities if have state id and amenities"""
     states = storage.all(State)
     cities = None
 
