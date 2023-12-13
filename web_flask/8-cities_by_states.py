@@ -3,7 +3,8 @@
 
 
 from flask import Flask, render_template
-from models import storage, State
+from models import storage
+from models.state import State
 
 
 app = Flask(__name__)
@@ -18,7 +19,7 @@ def teardown(exception):
 @app.route("/cities_by_states", strict_slashes=False)
 def cities_by_states():
     """return states and cities"""
-    states = storage.all(State)
+    states = storage.all(State).values()
     return render_template('8-cities_by_states.html', states=states)
 
 
