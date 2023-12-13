@@ -60,11 +60,9 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """Delete object"""
+        """Delete an object from __objects"""
         if obj is not None:
-            key = "{}.{}".format(obj.to_dict()['__class__'], obj.id)
-            if key in self.__objects:
-                self.__objects.pop(key, None)
+            self.__objects.pop(obj.to_dict()['__class__'] + '.' + obj.id)
 
     def close(self):
         """update object"""
