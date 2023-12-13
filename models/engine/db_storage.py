@@ -55,8 +55,8 @@ class DBStorage:
         if cls is None:
             for classes in tables.values():
                 for row in self.__session.query(classes).all():
-                    type_dict['{}.{}'
-                                .format(classes.__name__, row.id)] = row
+                    type_dict['{}.{}'.format(
+                        classes.__name__, row.id)] = row
         else:
             for row in self.__session.query(cls):
                 type_dict['{}.{}'.format(cls.__name__, row.id)] = row
