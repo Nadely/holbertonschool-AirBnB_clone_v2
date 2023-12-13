@@ -13,6 +13,7 @@ def hello_world():
     """Return Hello HBNB"""
     return "Hello HBNB!"
 
+
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """Return HBNB"""
