@@ -1,14 +1,16 @@
 #!/usr/bin/python3
+"""Write a script that starts a Flask web application"""
+
 from flask import Flask, render_template
 
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", strict_slashes=False)
 def hello_world():
     return "Hello HBNB!"
 
-@app.route("/hbnb")
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
     return "HBNB"
 
