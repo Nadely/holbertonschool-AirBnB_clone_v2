@@ -23,6 +23,7 @@ def all_states():
     states = storage.all(State).values()
     return render_template('9-states.html', states=states)
 
+
 @app.route("/states/<id>", strict_slashes=False)
 def states(id):
     """return cities if have state id"""
@@ -33,7 +34,6 @@ def states(id):
         if id == state_obj.id:
             state = state_obj
     return render_template('9-states.html', state=state)
-
 
 
 if __name__ == '__main__':
