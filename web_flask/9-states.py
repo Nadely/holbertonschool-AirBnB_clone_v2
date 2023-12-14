@@ -21,15 +21,15 @@ def teardown(exception):
 @app.route("/states/<id>", strict_slashes=False)
 def states(id=None):
     """return cities if have state id"""
-    states = storage.all(State)
-    cities = None
+    states = storage.all(State).values()
+    state = None
 
-    if id:
-        key = "State." + id
-        states = {key: storage.all(State).get(key)}
-        cities = storage.all(City)
+    if id is None:
+        return render_template('9-states.html', states=states)
 
-    return render_template('9-states.html', states=states, cities=cities)
+    for state in states:
+        if id == state.id:
+            return render_template('9-states.html', states=states)
 
 
 if __name__ == '__main__':
