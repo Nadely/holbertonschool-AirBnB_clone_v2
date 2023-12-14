@@ -5,12 +5,12 @@
     </head>
     <body>
         {% if states is defined %}
-        <h1>States</h1>
-        <ul>
+        <H1>States</H1>
+        <UL>
             {% for state in states | sort(attribute='name') %}
-            <li>{{ state.id }}: <b>{{ state.name }}</b></li>
+            <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
             {% endfor %}
-        </ul>
+        </UL>
             {% elif state %}
             <H1>State: {{ state.name }}</H1>
             <H3>Cities:</H3>
