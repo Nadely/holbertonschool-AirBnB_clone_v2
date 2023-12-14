@@ -18,20 +18,16 @@ def teardown(exception):
 
 
 @app.route("/hbnb_filters", strict_slashes=False)
-def hbnb_filters(id=None):
+def hbnb_filters():
     """return cities if have state id and amenities"""
     states = storage.all(State)
-    cities = None
-
-    if id:
-        key = "State." + id
-        states = {key: storage.all(State).get(key)}
-        cities = storage.all(City)
-        amenities = storage.all(Amenity)
+    cities = storage.all(City)
+    amenities = storage.all(Amenity)
 
     return render_template('10-hbnb_filters.html', states=states,
-                           cities=cities, amenities=amenities)
+                           amenities=amenities)
 
 
 if __name__ == '__main__':
+    """main"""
     app.run(host='0.0.0.0', port=5000)
