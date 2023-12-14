@@ -18,18 +18,21 @@ def teardown(exception):
 
 
 @app.route("/states", strict_slashes=False)
+def all_states():
+    states = storage.all(State).values()
+    return render_template('9-states.html', states=states)
+
 @app.route("/states/<id>", strict_slashes=False)
-def states(id=None):
+def states(id):
     """return cities if have state id"""
     states = storage.all(State).values()
     state = None
 
-    if id is None:
-        return render_template('9-states.html', states=states)
+    for state_obj in states:
+        if id == state_obj.id:
+            state = state_obj
+    return render_template('9-states.html', state=state)
 
-    for state in states:
-        if id == state.id:
-            return render_template('9-states.html', states=states)
 
 
 if __name__ == '__main__':
